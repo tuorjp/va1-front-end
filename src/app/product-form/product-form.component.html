@@ -1,1 +1,25 @@
-<p>product-form works!</p>
+<h2 mat-dialog-title>{{ data.isEdit ? 'Editar' : 'Adicionar' }} Produto</h2>
+
+<div mat-dialog-content>
+  <form [formGroup]="productForm">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nome do Produto</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+        Nome é obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="active">Ativo</mat-checkbox>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button
+          color="primary"
+          (click)="onSubmit()"
+          [disabled]="productForm.invalid">
+    {{ data.isEdit ? 'Atualizar' : 'Salvar' }}
+  </button>
+</div>

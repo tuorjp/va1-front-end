@@ -47,7 +47,12 @@ export class ProductsComponent {
   }
 
   openAddDialog() {
-    const dialogRef = this.dialog.open(ProductFormComponent, { width: '500px' });
+    const dialogRef = this.dialog.open(ProductFormComponent, {
+      width: '500px',
+      data: {
+        isEdit: false,
+      },
+    });
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         this.loadProducts();
@@ -60,7 +65,7 @@ export class ProductsComponent {
       width: '500px',
       data: {
         ...product,
-        isEdit: true
+        isEdit: true,
       }
     });
 
